@@ -25,9 +25,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r url_shortener_test/requirements.txt
-          pip install allure-behave  # Ensures Allure is installed
+          pip install allure-behave  # Ensures Allure formatter is available
 
-      - name: Run Behave Tests
+      - name: Install Allure Command Line
+        run: |
+          sudo apt update
+          sudo apt install -y openjdk-11-jre
+          wget https://github.com/allure-framework/allure2/releases/download/2.24.0/allure-2.24.0.tgz
+          tar -zxvf allure-2.24.0.tgz
+          sudo mv allure-2.24.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+          allure --version  # Verify installation
+
+      - name: Run Behave Tests with Allure Reporting
         run: |
           behave url_shortener_test/features/ --format allure_behave.formatter:AllureFormatter -o url_shortener_test/allure-results
 

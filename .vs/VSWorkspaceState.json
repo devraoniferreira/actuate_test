@@ -8,6 +8,6 @@
     "\\url_shortener_test\\features\\steps",
     "\\url_shortener_test\\pages"
   ],
-  "SelectedNode": "\\url_shortener_test\\.github\\workflows\\ci.yml",
+  "SelectedNode": "\\url_shortener_test\\features\\steps\\shortener_steps.py",
   "PreviewInSolutionExplorer": false
 }

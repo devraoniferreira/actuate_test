@@ -14,7 +14,7 @@ def step_open_page(context):
     options.add_argument('--disable-dev-shm-usage')  #
 
     context.driver = webdriver.Chrome(options=options)
-    context.driver.get('https://your-url-shortener-page.com')
+    context.driver.get('http://localhost:8000/static/index.html')
 
 @when('the user enters a URL "{url}"')
 def step_enter_url(context, url):

@@ -4,9 +4,10 @@ from pages.shortener_page import ShortenerPage
 
 @given('the user is on the URL shortener page')
 def step_open_page(context):
-    context.driver = webdriver.Chrome()
-    context.page = ShortenerPage(context.driver)
-    context.page.open()
+    options = webdriver.ChromeOptions()
+    options.add_argument("user-data-dir=/path/to/a/unique/directory")
+    context.driver = webdriver.Chrome(options=options)
+    context.driver.get('https://your-url-shortener-page.com')
 
 @when('the user enters a URL "{url}"')
 def step_enter_url(context, url):

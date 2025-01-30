@@ -22,3 +22,17 @@ Feature: URL Shortener
     When the user enters a shortened URL "zzzz"
     And clicks the "Get original" button
     Then error message "invalid short url" should be displayed
+
+Scenario: Open original URL by shortened URL
+    Given the user is on the URL shortener page
+    When the user enters a shortened URL "c984d0"
+    And clicks the "Get original" button
+    And the original URL should be displayed
+    Then the user should be redirected to the original URL "https://example.com"
+
+Scenario: View click count for a shortened URL
+  Given the user is on the URL shortener page
+  When the user enters a URL "https://example.com"
+  And clicks the "Make it short" button
+  And clicks the "Make it short" button
+  Then the click count for should be displayed as "2"

@@ -5,6 +5,6 @@
     "\\url_shortener_test\\features",
     "\\url_shortener_test\\features\\steps"
   ],
-  "SelectedNode": "\\url_shortener_test\\features\\steps\\shortener_steps.py",
+  "SelectedNode": "\\url_shortener_test\\test_api.py",
   "PreviewInSolutionExplorer": false
 }

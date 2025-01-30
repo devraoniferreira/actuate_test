@@ -12,6 +12,8 @@ class ShortenerPage(BasePage):
     LONG_BUTTON = (By.ID, "longbtn")
     LONG_MSG = (By.ID, "longmsg")
 
+    CLICK_COUNT_MSG = (By.ID, "clickcountmsg")
+
     def open(self):
         self.driver.get(self.URL)
 
@@ -28,3 +30,10 @@ class ShortenerPage(BasePage):
 
     def get_original_url(self):
         return self.get_text(self.LONG_MSG)
+
+    def get_clickcountmsg_url(self):
+        return self.get_text(self.CLICK_COUNT_MSG)
+
+    def open_original_url(self):
+        original_url = self.get_text(self.LONG_MSG)
+        self.driver.get(self.LONG_MSG)

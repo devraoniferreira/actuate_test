@@ -32,6 +32,20 @@ def step_click_get_original(context):
 def step_verify_original_url(context):
     assert context.page.get_original_url() == "https://example.com"
 
+@then('the click count for should be displayed as "2"')
+def STEP_get_clickcountmsg_url(context):
+    assert context.page.get_original_url() == "2"
+
+@When('the original URL should be displayed')
+def step_verify_original_url(context):
+    assert context.page.get_original_url() == "https://example.com"
+
+
+@then('the user should be redirected to the original URL "{expected_url}"')
+def step_verify_original_url(context, expected_url):
+    context.page.open_original_url()
+    
+
 @then('error message "invalid url" should be displayed')
 def step_verify_original_url(context):
     assert context.page.get_original_url() == "invalid url"

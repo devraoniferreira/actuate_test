@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated to latest version
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -42,7 +42,7 @@ jobs:
           behave url_shortener_test/features/ --format allure_behave.formatter:AllureFormatter -o url_shortener_test/allure-results
 
       - name: Upload Allure Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated to v4
         with:
           name: allure-results
           path: url_shortener_test/allure-results

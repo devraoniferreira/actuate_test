@@ -1,45 +1,37 @@
-name: Run Tests with Uvicorn Server
+name: CI - Run Behave Tests
 
 on:
   push:
     branches:
-      - main  # or the name of your branch
+      - main
   pull_request:
     branches:
-      - main  # or the name of your branch
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4  
 
-      # Step 2: Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.10'  # or the version you're using
+          python-version: "3.10"
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install behave selenium  # Install both behave and selenium
+          pip install -r url_shortener_test/requirements.txt  
 
-      # Step 4: Add the pages module to PYTHONPATH
-      - name: Add pages module to PYTHONPATH
-        run: echo "export PYTHONPATH=$(pwd)/url_shortener_test/features/pages:$PYTHONPATH" >> $GITHUB_ENV
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/url_shortener_test" >> $GITHUB_ENV
 
-      # Step 5: Start Uvicorn server in the background
-      - name: Start Uvicorn server
+      - name: Start uvicorn server
         run: |
-          nohup uvicorn endpoint:app --reload &  # Start the server in the background
+          nohup uvicorn endpoint:app --reload &
 
-      # Step 6: Run tests
-      - name: Run tests
-        run: |
-          behave url_shortener_test/features/
+      - name: Run Behave Tests
+        run: behave url_shortener_test/features/

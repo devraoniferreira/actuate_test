@@ -3,32 +3,39 @@ name: Run Tests with Uvicorn Server
 on:
   push:
     branches:
-      - main  
+      - main  # or the name of your branch
   pull_request:
     branches:
-      - main 
+      - main  # or the name of your branch
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'  
+          python-version: '3.10'  # or the version you're using
+
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install behave  # Ensure behave is installed
 
+      # Step 4: Start Uvicorn server in the background
       - name: Start Uvicorn server
         run: |
-          nohup uvicorn endpoint:app --reload & 
+          nohup uvicorn endpoint:app --reload &  # Start the server in the background
 
+      # Step 5: Run tests
       - name: Run tests
         run: |
           behave url_shortener_test/features/

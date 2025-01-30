@@ -6,13 +6,11 @@ import shutil
 
 @given('the user is on the URL shortener page')
 def step_open_page(context):
-    user_data_dir = tempfile.mkdtemp()
     options = webdriver.ChromeOptions()
-    options.add_argument(f"user-data-dir={user_data_dir}")
     context.driver = webdriver.Chrome(options=options)
     context.page = ShortenerPage(context.driver)
     context.page.open()
-    shutil.rmtree(user_data_dir)
+
    
 
 @when('the user enters a URL "{url}"')

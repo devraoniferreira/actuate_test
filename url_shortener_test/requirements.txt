@@ -2,3 +2,4 @@ selenium
 behave
 requests
 pytest
+allure

@@ -24,7 +24,9 @@ jobs:
       - name: Instalar Dependências
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r url_shortener_test/requirements.txt
 
       - name: Rodar Testes Behave
-        run: behave features/
+        run: |
+          cd url_shortener_test
+          behave features/

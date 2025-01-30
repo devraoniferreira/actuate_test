@@ -5,16 +5,13 @@ import tempfile
 
 @given('the user is on the URL shortener page')
 def step_open_page(context):
-    user_data_dir = tempfile.mkdtemp() 
-    
+    user_data_dir = tempfile.mkdtemp()  
     options = webdriver.ChromeOptions()
     options.add_argument(f"user-data-dir={user_data_dir}")  
-    options.add_argument('--headless') 
-    options.add_argument('--no-sandbox')  
-    options.add_argument('--disable-dev-shm-usage')  #
-
-    context.driver = webdriver.Chrome(options=options)
-    context.driver.get('http://localhost:8000/static/index.html')
+    context.driver = webdriver.Chrome(options=options)  
+    context.page = ShortenerPage(context.driver)
+    context.page.open()
+   
 
 @when('the user enters a URL "{url}"')
 def step_enter_url(context, url):

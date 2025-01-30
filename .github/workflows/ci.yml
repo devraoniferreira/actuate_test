@@ -28,7 +28,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install behave  # Ensure behave is installed
+          pip install behave selenium  # Install both behave and selenium
 
       # Step 4: Start Uvicorn server in the background
       - name: Start Uvicorn server

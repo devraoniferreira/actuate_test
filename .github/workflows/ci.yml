@@ -1,33 +1,34 @@
-name: CI - Run Behave Tests
+name: Run Tests with Uvicorn Server
 
 on:
   push:
     branches:
-      - main
+      - main  
   pull_request:
     branches:
-      - main
+      - main 
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4  
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.10"
-
-      - name: Install Dependencies
+          python-version: '3.10'  
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r url_shortener_test/requirements.txt  
+          pip install -r requirements.txt
 
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/url_shortener_test" >> $GITHUB_ENV
+      - name: Start Uvicorn server
+        run: |
+          nohup uvicorn endpoint:app --reload & 
 
-      - name: Run Behave Tests
-        run: behave url_shortener_test/features/
+      - name: Run tests
+        run: |
+          behave url_shortener_test/features/

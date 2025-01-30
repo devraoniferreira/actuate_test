@@ -1,13 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.github",
+    "\\.github\\workflows",
     "\\url_shortener_test",
-    "\\url_shortener_test\\.github",
-    "\\url_shortener_test\\.github\\workflows",
     "\\url_shortener_test\\features",
     "\\url_shortener_test\\features\\steps",
     "\\url_shortener_test\\pages"
   ],
-  "SelectedNode": "\\url_shortener_test\\.github\\workflows\\ci.yml",
+  "SelectedNode": "\\.github\\workflows\\ci.yml",
   "PreviewInSolutionExplorer": false
 }

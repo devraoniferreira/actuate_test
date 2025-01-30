@@ -18,7 +18,7 @@ def step_click_shorten(context):
 
 @then('a shortened URL should be displayed')
 def step_verify_shortened_url(context):
-    assert context.page.get_shortened_url() != "", "Shortened URL not displayed"
+    assert context.page.get_shortened_url() == "c984d0"
 
 @when('the user enters a shortened URL "{short_url}"')
 def step_enter_short_url(context, short_url):
@@ -31,6 +31,14 @@ def step_click_get_original(context):
 @then('the original URL should be displayed')
 def step_verify_original_url(context):
     assert context.page.get_original_url() == "https://example.com"
+
+@then('error message "invalid url" should be displayed')
+def step_verify_original_url(context):
+    assert context.page.get_original_url() == "invalid url"
+
+@then('error message "invalid short url" should be displayed')
+def step_verify_original_url(context):
+    assert context.page.get_original_url() == "invalid short url"
 
 @then('close the browser')
 def step_close_browser(context):

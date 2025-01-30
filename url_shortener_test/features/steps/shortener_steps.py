@@ -3,14 +3,19 @@ from selenium import webdriver
 from pages.shortener_page import ShortenerPage
 import tempfile
 import shutil
+import uuid
 
 @given('the user is on the URL shortener page')
 def step_open_page(context):
+    user_data_dir = tempfile.mkdtemp(prefix=str(uuid.uuid4()))  
     options = webdriver.ChromeOptions()
+    options.add_argument(f"user-data-dir={user_data_dir}") 
+    
     context.driver = webdriver.Chrome(options=options)
     context.page = ShortenerPage(context.driver)
     context.page.open()
 
+    shutil.rmtree(user_data_dir, ignore_errors=True)
    
 
 @when('the user enters a URL "{url}"')

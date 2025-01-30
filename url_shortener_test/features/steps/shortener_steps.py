@@ -1,11 +1,18 @@
 from behave import given, when, then
 from selenium import webdriver
 from pages.shortener_page import ShortenerPage
+import tempfile
 
 @given('the user is on the URL shortener page')
 def step_open_page(context):
+    user_data_dir = tempfile.mkdtemp() 
+    
     options = webdriver.ChromeOptions()
-    options.add_argument("user-data-dir=/path/to/a/unique/directory")
+    options.add_argument(f"user-data-dir={user_data_dir}")  
+    options.add_argument('--headless') 
+    options.add_argument('--no-sandbox')  
+    options.add_argument('--disable-dev-shm-usage')  #
+
     context.driver = webdriver.Chrome(options=options)
     context.driver.get('https://your-url-shortener-page.com')
 

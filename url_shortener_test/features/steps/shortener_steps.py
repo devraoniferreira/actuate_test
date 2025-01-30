@@ -7,9 +7,9 @@ import uuid
 
 @given('the user is on the URL shortener page')
 def step_open_page(context):
-    options = webdriver.ChromeOptions()  
     context.driver = webdriver.Chrome(options=options)
-    context.driver.get('http://localhost:8000/static/index.html')  
+    context.page = ShortenerPage(context.driver)
+    context.page.open()
    
 
 @when('the user enters a URL "{url}"')

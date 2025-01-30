@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Actuate URL Shortener</title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+	</head>
+	<body>
+		<noscript>This page contains javascript content, please enable javascript in your browser.</noscript>
+		<div class="container">
+			<h1>Actuate URL Shortener</h1>
+			<input type="text" id="shortinput" class="input input-1" placeholder="Enter URL" />
+			<button id="shortbtn" class="button-1" onclick="short()">
+				Make it short
+			</button>
+			<span class="msg msg-1" id="shortmsg"></span>
+
+			<input type="text" id="longinput" class="input input-2" placeholder="Enter Short URL" />
+			<button id="longbtn" class="button-2" onclick="long()">
+				Get original
+			</button>
+			<span class="msg msg-2" id="longmsg"></span>
+			<span id="clickcountmsg"></span>
+		</div>
+
+		<script src="index.js"></script>
+	</body>
+</html>

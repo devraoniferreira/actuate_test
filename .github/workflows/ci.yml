@@ -1,4 +1,4 @@
-name: CI - Run Behave Tests
+name: Run Tests with Uvicorn Server
 
 on:
   push:
@@ -24,12 +24,13 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r url_shortener_test/requirements.txt  
+          pip install -r url_shortener_test/requirements.txt
+          pip install -r requirements.txt
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/url_shortener_test" >> $GITHUB_ENV
 
-      - name: Start uvicorn server
+      - name: Start Uvicorn server
         run: |
           nohup uvicorn endpoint:app --reload &
 

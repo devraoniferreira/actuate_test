@@ -2,4 +2,4 @@ selenium
 behave
 requests
 pytest
-allure
+allure-behave

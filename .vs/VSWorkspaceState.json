@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\url_shortener_test",
-    "\\url_shortener_test\\features",
-    "\\url_shortener_test\\features\\steps"
+    "\\url_shortener_test\\.github",
+    "\\url_shortener_test\\.github\\workflows"
   ],
-  "SelectedNode": "\\url_shortener_test\\test_api.py",
+  "SelectedNode": "\\url_shortener_test\\README.txt",
   "PreviewInSolutionExplorer": false
 }

@@ -61,3 +61,15 @@ allure serve ./allure-results --output ./allure-report
 ### 4. **Viewing the Allure Report**
 
 After running the `allure serve` command, Allure will automatically open a browser window displaying the test report.
+
+
+
+
+The approach used was to perform manual tests to identify buses and explore the possibilities. Later, the BDD was written, 
+which made it possible to develop automation using the 'Page Object Model'.
+
+Then, the API test was performed, which was initially explored in Postman and later the automation was coded with Python.
+
+To finish, I implemented CI/CD to run the tests and ensure continuous execution and software quality.
+With the integration of CI/CD, the tests were automated in the pipeline, 
+ensuring rapid feedback on possible failures and facilitating project maintenance.

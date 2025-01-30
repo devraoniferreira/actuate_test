@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4  # Atualizado para v4
+        uses: actions/checkout@v4  
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,24 +24,10 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r url_shortener_test/requirements.txt  # Corrigido caminho do requirements
+          pip install -r url_shortener_test/requirements.txt  
 
-      - name: Install Allure Command Line
-        run: |
-          sudo apt update
-          sudo apt install -y openjdk-11-jre
-          wget https://github.com/allure-framework/allure2/releases/download/2.24.0/allure-2.24.0.tgz
-          tar -zxvf allure-2.24.0.tgz
-          sudo mv allure-2.24.0 /opt/allure
-          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
-          allure --version  # Verifica instalação
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/url_shortener_test" >> $GITHUB_ENV
 
-      - name: Run Behave Tests with Allure Reporting
-        run: |
-          behave url_shortener_test/features/ --format allure_behave.formatter:AllureFormatter -o url_shortener_test/allure-results
-
-      - name: Upload Allure Results
-        uses: actions/upload-artifact@v4  # Atualizado para v4
-        with:
-          name: allure-results
-          path: url_shortener_test/allure-results
+      - name: Run Behave Tests
+        run: behave url_shortener_test/features/
